@@ -1,15 +1,10 @@
 pipeline {
     agent any
-
-    environment {
-        AWS_DEFAULT_REGION = 'us-east-1'
-        S3_BUCKET_NAME = 'jt-dataeng-luamaia'
-    }
-
+    
     stages {
         stage('Checkout') {
             steps {
-                git credentialsId: 'github-pst', url: 'https://github.com/thelua/imdb-view.git'
+                git 'https://github.com/thelua/imdb-view.git'
             }
         }
 
@@ -25,7 +20,7 @@ pipeline {
             steps {
                 script {
                     withAWS(region: env.AWS_DEFAULT_REGION, credentials: 'my_aws') {
-                        sh "aws s3 sync resultado/top_100_atores.csv s3://${env.S3_BUCKET_NAME}/"
+                        s3Upload(bucket: 'jt-dataeng-luamaia', file: 'resultado/top_100_atores.csv')
                     }
                 }
             }
