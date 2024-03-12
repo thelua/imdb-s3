@@ -1,6 +1,6 @@
 pipeline {
     agent any
-    
+
     stages {
         stage('Checkout') {
             steps {
@@ -9,11 +9,10 @@ pipeline {
                 }
             }
         }
-    }
 
         stage('Executar main.py') {
             steps {
-                script {
+                script { 
                     sh 'python3 main.py'
                 }
             }
@@ -24,9 +23,10 @@ pipeline {
                 script {
                     withAWS(region:'us-east-1', credentials: 'my-aws') {
                         s3Upload(bucket: 'jt-dataeng-luamaia', file: 'resultado/top_100_atores.csv')
-                    }
                 }
+               
             }
         }
     }
 
+}
