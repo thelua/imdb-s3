@@ -19,7 +19,7 @@ pipeline {
         stage('Deploy para o S3') {
             steps {
                 script {
-                    withAWS(region: env.AWS_DEFAULT_REGION, credentials: 'my_aws') {
+                    withAWS(region: env.AWS_DEFAULT_REGION, credentials: 'my-aws') {
                         s3Upload(bucket: 'jt-dataeng-luamaia', file: 'resultado/top_100_atores.csv')
                     }
                 }
