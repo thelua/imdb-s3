@@ -2,14 +2,14 @@ pipeline {
     agent any
     
     stages {
-    stage('Checkout') {
-        steps {
-            script {
-                git branch: 'main', credentialsId: 'meu-git', url: 'https://github.com/thelua/imdb-view.git'
+        stage('Checkout') {
+            steps {
+                script {
+                    git branch: 'main', credentialsId: 'meu-git', url: 'https://github.com/thelua/imdb-view.git'
+                }
             }
         }
     }
-}
 
         stage('Executar main.py') {
             steps {
