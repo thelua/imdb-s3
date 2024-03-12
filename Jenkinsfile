@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/thelua/imdb-view.git'
+                git branch: 'main', credentialsId: 'meu-git', 'https://github.com/thelua/imdb-view.git'
             }
         }
 
@@ -19,7 +19,7 @@ pipeline {
         stage('Deploy para o S3') {
             steps {
                 script {
-                    withAWS(region: env.AWS_DEFAULT_REGION, credentials: 'my-aws') {
+                    withAWS(region:'us-east-1', credentials: 'my-aws') {
                         s3Upload(bucket: 'jt-dataeng-luamaia', file: 'resultado/top_100_atores.csv')
                     }
                 }
