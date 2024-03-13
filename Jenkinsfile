@@ -5,7 +5,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 script {
-                    git branch: 'main', credentialsId: 'meu-git', url: 'https://github.com/thelua/imdb-view.git'
+                    git branch: 'main', credentialsId: 'meu-git', url: 'https://github.com/thelua/imdb-s3.git'
                 }
             }
         }
